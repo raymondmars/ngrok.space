@@ -1,0 +1,6 @@
+github.com/alecthomas/log4go v0.0.0-20180109082532-d146e6b86faa h1:0zdYOLyuQ3TWIgWNgEH+LnmZNMmkO1ze3wriQt093Mk=
+github.com/alecthomas/log4go v0.0.0-20180109082532-d146e6b86faa/go.mod h1:iCVmQ9g4TfaRX5m5jq5sXY7RXYWPv9/PynM/GocbG3w=
+github.com/inconshreveable/go-vhost v0.0.0-20160627193104-06d84117953b h1:IpLPmn6Re21F0MaV6Zsc5RdSE6KuoFpWmHiUSEs3PrE=
+github.com/inconshreveable/go-vhost v0.0.0-20160627193104-06d84117953b/go.mod h1:aA6DnFhALT3zH0y+A39we+zbrdMC2N0X/q21e6FI0LU=
+github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 h1:N/ElC8H3+5XpJzTSTfLsJV/mx9Q9g7kxmchpfZyxgzM=
+github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
