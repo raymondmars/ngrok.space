@@ -21,5 +21,6 @@ server-assets:
 
 assets: client-assets server-assets
 
-deploy:
-	scp bin/ngrokd root@cat:~/up/ngrok/
+
+remove-ds-store:
+	find . -name ".DS_Store" -delete

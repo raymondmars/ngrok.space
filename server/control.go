@@ -89,8 +89,6 @@ func NewControl(ctlConn conn.Conn, authMsg *msg.Auth) {
 	//checkout client
 	ca := NewClientAuth(authMsg)
 	if !ca.IsValid() {
-		// fmt.Println(authMsg.User)
-		// fmt.Println(authMsg.Password)
 		failAuth(errors.New(fmt.Sprintf("Invalid client with auth: %s%s", authMsg.User, authMsg.Password)))
 		return
 	}
