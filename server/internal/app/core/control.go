@@ -86,6 +86,7 @@ func NewControl(ctlConn conn.Conn, authMsg *msg.Auth) {
 		_ = msg.WriteMsg(ctlConn, &msg.AuthResp{Error: e.Error()})
 		ctlConn.Close()
 	}
+
 	//checkout client
 	ca := NewClientAuth(authMsg)
 	if !ca.IsValid() {

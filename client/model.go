@@ -247,6 +247,10 @@ func (c *ClientModel) control() {
 	inter := interfaces[0]
 	mac := inter.HardwareAddr.String()
 
+	subdomains := []string{}
+	for _, item := range c.tunnelConfig {
+		subdomains = append(subdomains, item.Subdomain)
+	}
 	// authenticate with the server
 	auth := &msg.Auth{
 		ClientId:   c.id,
@@ -256,6 +260,7 @@ func (c *ClientModel) control() {
 		MmVersion:  version.MajorMinor(),
 		User:       c.authToken,
 		MacAddress: mac,
+		SubDomains: strings.Join(subdomains, ","),
 	}
 
 	if err = msg.WriteMsg(ctlConn, auth); err != nil {

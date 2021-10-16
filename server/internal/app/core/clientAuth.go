@@ -16,17 +16,17 @@ type ClientAuth interface {
 	IsValid() bool
 }
 
+func NewClientAuth(auth *msg.Auth) ClientAuth {
+	return &mysqlAuthDb{Auth: auth}
+}
+
 //Default use file to store username and password and to check client auth info
 type fileAuthDb struct {
 	Auth *msg.Auth
 }
 
-func NewClientAuth(auth *msg.Auth) ClientAuth {
-	return &fileAuthDb{Auth: auth}
-}
-
 func (fa *fileAuthDb) IsValid() bool {
-	return true
+
 	//To checkout user token is valid
 	if len(fa.Auth.User) < 16 || !strings.Contains(fa.Auth.User, "@") {
 		log.Println("client user token too short or invalid")

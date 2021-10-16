@@ -40,6 +40,7 @@ type Auth struct {
 	Arch       string
 	ClientId   string // empty for new sessions
 	MacAddress string
+	SubDomains string
 }
 
 // A server responds to an Auth message with an

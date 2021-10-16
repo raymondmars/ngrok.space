@@ -9,6 +9,7 @@ import (
 
 	"raymond.com/common/msg"
 	"raymond.com/ngrok-server/internal/app/core"
+	"raymond.com/ngrok-server/internal/pkg/database"
 
 	"raymond.com/common/conn"
 
@@ -89,6 +90,7 @@ func tunnelListener(addr string, tlsConfig *tls.Config) {
 }
 
 func main() {
+	database.InstallDb()
 	// parse options
 	core.OptionParam = core.ParseArgs()
 
