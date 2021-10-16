@@ -1,4 +1,4 @@
-package main
+package core
 
 import (
 	"encoding/base64"
@@ -57,7 +57,7 @@ type Tunnel struct {
 func registerVhost(t *Tunnel, protocol string, servingPort int) (err error) {
 	vhost := os.Getenv("VHOST")
 	if vhost == "" {
-		vhost = fmt.Sprintf("%s:%d", opts.domain, servingPort)
+		vhost = fmt.Sprintf("%s:%d", OptionParam.Domain, servingPort)
 	}
 
 	// Canonicalize virtual host by removing default port (e.g. :80 on HTTP)
@@ -78,18 +78,18 @@ func registerVhost(t *Tunnel, protocol string, servingPort int) (err error) {
 	hostname := strings.ToLower(strings.TrimSpace(t.req.Hostname))
 	if hostname != "" {
 		t.url = fmt.Sprintf("%s://%s", protocol, hostname)
-		return tunnelRegistry.Register(t.url, t)
+		return CommonTunnelRegistry.Register(t.url, t)
 	}
 
 	// Register for specific subdomain
 	subdomain := strings.ToLower(strings.TrimSpace(t.req.Subdomain))
 	if subdomain != "" {
 		t.url = fmt.Sprintf("%s://%s.%s", protocol, subdomain, vhost)
-		return tunnelRegistry.Register(t.url, t)
+		return CommonTunnelRegistry.Register(t.url, t)
 	}
 
 	// Register for random URL
-	t.url, err = tunnelRegistry.RegisterRepeat(func() string {
+	t.url, err = CommonTunnelRegistry.RegisterRepeat(func() string {
 		return fmt.Sprintf("%s://%x.%s", protocol, rand.Int31(), vhost)
 	}, t)
 
@@ -117,10 +117,10 @@ func NewTunnel(m *msg.ReqTunnel, ctl *Control) (t *Tunnel, err error) {
 
 			// create the url
 			addr := t.listener.Addr().(*net.TCPAddr)
-			t.url = fmt.Sprintf("tcp://%s:%d", opts.domain, addr.Port)
+			t.url = fmt.Sprintf("tcp://%s:%d", OptionParam.Domain, addr.Port)
 
 			// register it
-			if err = tunnelRegistry.RegisterAndCache(t.url, t); err != nil {
+			if err = CommonTunnelRegistry.RegisterAndCache(t.url, t); err != nil {
 				// This should never be possible because the OS will
 				// only assign available ports to us.
 				t.listener.Close()
@@ -139,7 +139,7 @@ func NewTunnel(m *msg.ReqTunnel, ctl *Control) (t *Tunnel, err error) {
 		}
 
 		// try to return to you the same port you had before
-		cachedUrl := tunnelRegistry.GetCachedRegistration(t)
+		cachedUrl := CommonTunnelRegistry.GetCachedRegistration(t)
 		if cachedUrl != "" {
 			var port int
 			parts := strings.Split(cachedUrl, ":")
@@ -163,7 +163,7 @@ func NewTunnel(m *msg.ReqTunnel, ctl *Control) (t *Tunnel, err error) {
 		return
 
 	case "http", "https":
-		l, ok := listeners[proto]
+		l, ok := ConnListeners[proto]
 		if !ok {
 			err = fmt.Errorf("Not listening for %s connections", proto)
 			return
@@ -202,7 +202,7 @@ func (t *Tunnel) Shutdown() {
 	}
 
 	// remove ourselves from the tunnel registry
-	tunnelRegistry.Del(t.url)
+	CommonTunnelRegistry.Del(t.url)
 
 	// let the control connection know we're shutting down
 	// currently, only the control connection shuts down tunnels,

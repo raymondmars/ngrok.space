@@ -1,4 +1,4 @@
-package main
+package core
 
 import (
 	"crypto/tls"
@@ -37,7 +37,7 @@ Bad Request
 )
 
 // Listens for new http(s) connections from the public internet
-func startHttpListener(addr string, tlsCfg *tls.Config) (listener *conn.Listener) {
+func StartHttpListener(addr string, tlsCfg *tls.Config) (listener *conn.Listener) {
 	// bind/listen for incoming connections
 	var err error
 	if listener, err = conn.Listen(addr, "pub", tlsCfg); err != nil {
@@ -70,7 +70,7 @@ func httpHandler(c conn.Conn, proto string) {
 	}()
 
 	// Make sure we detect dead connections while we decide how to multiplex
-	c.SetDeadline(time.Now().Add(connReadTimeout))
+	c.SetDeadline(time.Now().Add(ConnReadTimeout))
 
 	// multiplex by extracting the Host header, the vhost library
 	vhostConn, err := vhost.HTTP(c)
@@ -92,7 +92,7 @@ func httpHandler(c conn.Conn, proto string) {
 
 	// multiplex to find the right backend host
 	c.Debug("Found hostname %s in request", host)
-	tunnel := tunnelRegistry.Get(fmt.Sprintf("%s://%s", proto, host))
+	tunnel := CommonTunnelRegistry.Get(fmt.Sprintf("%s://%s", proto, host))
 	if tunnel == nil {
 		c.Info("No tunnel found for hostname %s", host)
 		c.Write([]byte(fmt.Sprintf(NotFound, len(host)+18, host)))

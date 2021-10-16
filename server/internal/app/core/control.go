@@ -1,4 +1,4 @@
-package main
+package core
 
 import (
 	"errors"
@@ -113,7 +113,7 @@ func NewControl(ctlConn conn.Conn, authMsg *msg.Auth) {
 	}
 
 	// register the control
-	if replaced := controlRegistry.Add(c.id, c); replaced != nil {
+	if replaced := CommonControlRegistry.Add(c.id, c); replaced != nil {
 		replaced.shutdown.WaitComplete()
 	}
 
@@ -274,7 +274,7 @@ func (c *Control) stopper() {
 	c.shutdown.WaitBegin()
 
 	// remove ourself from the control registry
-	controlRegistry.Del(c.id)
+	CommonControlRegistry.Del(c.id)
 
 	// shutdown manager() so that we have no more work to do
 	close(c.in)

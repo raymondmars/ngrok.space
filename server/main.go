@@ -8,27 +8,13 @@ import (
 	"time"
 
 	"raymond.com/common/msg"
+	"raymond.com/ngrok-server/internal/app/core"
 
 	"raymond.com/common/conn"
 
 	"raymond.com/common/util"
 
 	log "raymond.com/common/log"
-)
-
-const (
-	registryCacheSize uint64        = 1024 * 1024 // 1 MB
-	connReadTimeout   time.Duration = 10 * time.Second
-)
-
-// GLOBALS
-var (
-	tunnelRegistry  *TunnelRegistry
-	controlRegistry *ControlRegistry
-
-	// XXX: kill these global variables - they're only used in tunnel.go for constructing forwarding URLs
-	opts      *Options
-	listeners map[string]*conn.Listener
 )
 
 func NewProxy(pxyConn conn.Conn, regPxy *msg.RegProxy) {
@@ -45,7 +31,7 @@ func NewProxy(pxyConn conn.Conn, regPxy *msg.RegProxy) {
 
 	// look up the control connection for this proxy
 	pxyConn.Info("Registering new proxy for %s", regPxy.ClientId)
-	ctl := controlRegistry.Get(regPxy.ClientId)
+	ctl := core.CommonControlRegistry.Get(regPxy.ClientId)
 
 	if ctl == nil {
 		panic("No client found for identifier: " + regPxy.ClientId)
@@ -76,7 +62,7 @@ func tunnelListener(addr string, tlsConfig *tls.Config) {
 				}
 			}()
 
-			tunnelConn.SetReadDeadline(time.Now().Add(connReadTimeout))
+			tunnelConn.SetReadDeadline(time.Now().Add(core.ConnReadTimeout))
 			var rawMsg msg.Message
 			if rawMsg, err = msg.ReadMsg(tunnelConn); err != nil {
 				tunnelConn.Warn("Failed to read message: %v", err)
@@ -90,7 +76,7 @@ func tunnelListener(addr string, tlsConfig *tls.Config) {
 
 			switch m := rawMsg.(type) {
 			case *msg.Auth:
-				NewControl(tunnelConn, m)
+				core.NewControl(tunnelConn, m)
 
 			case *msg.RegProxy:
 				NewProxy(tunnelConn, m)
@@ -104,10 +90,10 @@ func tunnelListener(addr string, tlsConfig *tls.Config) {
 
 func main() {
 	// parse options
-	opts = parseArgs()
+	core.OptionParam = core.ParseArgs()
 
 	// init logging
-	log.LogTo(opts.logto, opts.loglevel)
+	log.LogTo(core.OptionParam.Logto, core.OptionParam.Loglevel)
 
 	// seed random number generator
 	seed, err := util.RandomSeed()
@@ -118,28 +104,28 @@ func main() {
 
 	// init tunnel/control registry
 	registryCacheFile := os.Getenv("REGISTRY_CACHE_FILE")
-	tunnelRegistry = NewTunnelRegistry(registryCacheSize, registryCacheFile)
-	controlRegistry = NewControlRegistry()
+	core.CommonTunnelRegistry = core.NewTunnelRegistry(core.RegistryCacheSize, registryCacheFile)
+	core.CommonControlRegistry = core.NewControlRegistry()
 
 	// start listeners
-	listeners = make(map[string]*conn.Listener)
+	core.ConnListeners = make(map[string]*conn.Listener)
 
 	// load tls configuration
-	tlsConfig, err := LoadTLSConfig(opts.tlsCrt, opts.tlsKey)
+	tlsConfig, err := core.LoadTLSConfig(core.OptionParam.TlsCrt, core.OptionParam.TlsKey)
 	if err != nil {
 		panic(err)
 	}
 
 	// listen for http
-	if opts.httpAddr != "" {
-		listeners["http"] = startHttpListener(opts.httpAddr, nil)
+	if core.OptionParam.HttpAddr != "" {
+		core.ConnListeners["http"] = core.StartHttpListener(core.OptionParam.HttpAddr, nil)
 	}
 
 	// listen for https
-	if opts.httpsAddr != "" {
-		listeners["https"] = startHttpListener(opts.httpsAddr, tlsConfig)
+	if core.OptionParam.HttpsAddr != "" {
+		core.ConnListeners["https"] = core.StartHttpListener(core.OptionParam.HttpsAddr, tlsConfig)
 	}
 
 	// ngrok clients
-	tunnelListener(opts.tunnelAddr, tlsConfig)
+	tunnelListener(core.OptionParam.TunnelAddr, tlsConfig)
 }
