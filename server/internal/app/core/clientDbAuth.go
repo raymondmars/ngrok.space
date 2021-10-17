@@ -3,9 +3,9 @@ package core
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"fmt"
 	"strings"
 
-	"google.golang.org/genproto/googleapis/spanner/admin/database/v1"
 	"raymond.com/common/msg"
 	"raymond.com/ngrok-server/internal/pkg/database"
 	"raymond.com/ngrok-server/internal/pkg/models"
@@ -21,10 +21,12 @@ func (ma *mysqlAuthDb) IsValid() bool {
 	}
 	secrets := strings.Split(ma.Auth.User, ":")
 	email, password := secrets[0], secrets[1]
+
 	hasher := md5.New()
 	hasher.Write([]byte(password))
 	encodePwd := hex.EncodeToString(hasher.Sum(nil))
 	user := models.User{}
+	fmt.Println(email, password, encodePwd)
 	database.Db.Where("email = ? and password = ?", email, encodePwd).Preload("Domains").First(&user)
 	if user.ID == 0 {
 		return false

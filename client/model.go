@@ -240,17 +240,12 @@ func (c *ClientModel) control() {
 	}
 	defer ctlConn.Close()
 
-	interfaces, err := net.Interfaces()
-	if err != nil {
-		panic(err)
-	}
-	inter := interfaces[0]
-	mac := inter.HardwareAddr.String()
-
 	subdomains := []string{}
 	for _, item := range c.tunnelConfig {
 		subdomains = append(subdomains, item.Subdomain)
 	}
+
+	macAddress := util.GetMacAddress()
 	// authenticate with the server
 	auth := &msg.Auth{
 		ClientId:   c.id,
@@ -259,7 +254,7 @@ func (c *ClientModel) control() {
 		Version:    version.Proto,
 		MmVersion:  version.MajorMinor(),
 		User:       c.authToken,
-		MacAddress: mac,
+		MacAddress: macAddress[0],
 		SubDomains: strings.Join(subdomains, ","),
 	}
 

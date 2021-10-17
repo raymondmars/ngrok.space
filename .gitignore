@@ -1,4 +1,4 @@
 deploy/bin
 deploy/certs
 deploy/test
-
+.test.sql

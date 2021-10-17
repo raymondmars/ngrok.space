@@ -90,6 +90,7 @@ func tunnelListener(addr string, tlsConfig *tls.Config) {
 }
 
 func main() {
+
 	database.InstallDb()
 	// parse options
 	core.OptionParam = core.ParseArgs()
