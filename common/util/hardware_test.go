@@ -4,6 +4,7 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"math/rand"
 	"testing"
 )
 
@@ -20,4 +21,15 @@ func TestClientAuth(t *testing.T) {
 	encodePwd := hex.EncodeToString(hasher.Sum(nil))
 
 	fmt.Println(encodePwd)
+}
+
+func TestRandAddress(t *testing.T) {
+	// rand.Seed(time.Now().UnixNano())
+	seed, err := RandomSeed()
+	if err != nil {
+		panic(err)
+	}
+	rand.Seed(seed)
+
+	fmt.Printf("%x\n", rand.Int63())
 }

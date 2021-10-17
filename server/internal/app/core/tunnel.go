@@ -89,9 +89,12 @@ func registerVhost(t *Tunnel, protocol string, servingPort int) (err error) {
 	}
 
 	// Register for random URL
-	t.url, err = CommonTunnelRegistry.RegisterRepeat(func() string {
-		return fmt.Sprintf("%s://%x.%s", protocol, rand.Int31(), vhost)
-	}, t)
+	// t.url, err = CommonTunnelRegistry.RegisterRepeat(func() string {
+	// 	return fmt.Sprintf("%s://%x.%s", protocol, rand.Int31(), vhost)
+	// }, t)
+	//注释上面代码，开启商业化之路 ：）
+	t.url = fmt.Sprintf("%s://%x.%s", protocol, rand.Int31(), vhost)
+	CommonTunnelRegistry.Register(t.url, t)
 
 	return
 }
