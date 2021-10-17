@@ -74,7 +74,7 @@ func ParseArgs() (opts *Options, err error) {
 
 	authtoken := flag.String(
 		"authtoken",
-		"",
+		DefaultAuthtoken,
 		"Authentication token for identifying an ngrok.com account")
 
 	httpauth := flag.String(
@@ -84,7 +84,7 @@ func ParseArgs() (opts *Options, err error) {
 
 	subdomain := flag.String(
 		"subdomain",
-		"",
+		DefaultSubDomain,
 		"Request a custom subdomain from the ngrok server. (HTTP only)")
 
 	hostname := flag.String(
@@ -94,7 +94,8 @@ func ParseArgs() (opts *Options, err error) {
 
 	protocol := flag.String(
 		"proto",
-		"http+https",
+		// "http+https",
+		DefaultProtocol,
 		"The protocol of the traffic over the tunnel {'http', 'https', 'tcp'} (default: 'http+https')")
 
 	flag.Parse()
@@ -109,6 +110,9 @@ func ParseArgs() (opts *Options, err error) {
 		authtoken: *authtoken,
 		hostname:  *hostname,
 		command:   flag.Arg(0),
+	}
+	if WithLocalServer == "1" {
+		opts.command = LocalServerPort
 	}
 
 	switch opts.command {
@@ -140,6 +144,10 @@ func ParseArgs() (opts *Options, err error) {
 
 		opts.command = "default"
 		opts.args = flag.Args()
+	}
+
+	if WithLocalServer == "1" {
+		opts.args = []string{LocalServerPort}
 	}
 
 	return
