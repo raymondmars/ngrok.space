@@ -1,9 +1,6 @@
 package core
 
 import (
-	"crypto/md5"
-	"encoding/hex"
-	"fmt"
 	"strings"
 
 	"raymond.com/common/msg"
@@ -19,15 +16,14 @@ func (ma *mysqlAuthDb) IsValid() bool {
 	if ma.Auth.User == "" || ma.Auth.MacAddress == "" {
 		return false
 	}
-	secrets := strings.Split(ma.Auth.User, ":")
-	email, password := secrets[0], secrets[1]
+	// secrets := strings.Split(ma.Auth.User, ":")
+	// email, password := secrets[0], secrets[1]
 
-	hasher := md5.New()
-	hasher.Write([]byte(password))
-	encodePwd := hex.EncodeToString(hasher.Sum(nil))
+	// hasher := md5.New()
+	// hasher.Write([]byte(password))
+	// encodePwd := hex.EncodeToString(hasher.Sum(nil))
 	user := models.User{}
-	fmt.Println(email, password, encodePwd)
-	database.Db.Where("email = ? and password = ?", email, encodePwd).Preload("Domains").First(&user)
+	database.Db.Where("auth_token = ?", ma.Auth.User).Preload("Domains").First(&user)
 	if user.ID == 0 {
 		return false
 	}

@@ -28,7 +28,7 @@ func init() {
 
 func main() {
 	if WithLocalServer == "1" {
-		go localserver.StartServer()
+		go localserver.StartServer(fmt.Sprintf("https://%s.%s", DefaultSubDomain, DefaultDomain))
 	}
 
 	// parse options
