@@ -9,12 +9,3 @@ windows-client:
 	GOBIN= GOOS=windows GOARCH=amd64 go build -tags release -ldflags "-s -w" -a -o ../deploy/bin/windows_amd64/ngrok.exe .
 
 
-macos-raymond-with-server-client:
-	GOBIN= GOOS=darwin GOARCH=amd64 go build -tags release -ldflags "-s -w -X 'main.WithLocalServer=1' -X 'main.DefaultSubDomain=raymond' -X 'main.DefaultAuthtoken=c5n45fucie6jogm2ik9g_1zi1Ge97BJ0ibY7iAQP8Vjwl5lL'" -a -o ../deploy/bin/macos_amd64/ngrok-with-server .
-
-macos-aries-with-server-client:
-	GOBIN= GOOS=darwin GOARCH=amd64 go build -tags release -ldflags "-s -w -X 'main.WithLocalServer=1' -X 'main.DefaultSubDomain=lvxiaoxi' -X 'main.DefaultAuthtoken=c5n7famcie6p910qe4i0_1ziSj2zNKsW2ilbEqMmLJENqzjX'" -a -o ../deploy/bin/macos_amd64/xiaoxi/ngrok-server .
-
-windows-laosong-with-server-client:
-	GOBIN= GOOS=windows GOARCH=amd64 go build -tags release -ldflags "-s -w -X 'main.WithLocalServer=1' -X 'main.DefaultSubDomain=laosong' -X 'main.DefaultAuthtoken=c5ocmt6cie6kthkes6jg_1znRs4X21YlkMqGnmkCEvWeY3Ux'" -a -o ../deploy/bin/windows_amd64/song/ngrok-server.exe .
-
