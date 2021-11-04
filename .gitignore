@@ -2,3 +2,8 @@ deploy/bin
 deploy/certs
 deploy/test
 .test.sql
+Makefile-deploy
+deploy/assets/client/tls/ngrokroot.crt
+deploy/assets/server/tls/snakeoil.crt
+deploy/assets/server/tls/snakeoil.key
+
