@@ -1,6 +1,6 @@
 
 ### This is a fork version from [ngrok](https://github.com/inconshreveable/ngrok)     
-Because this version is no longer maintained, So I forked that project and make the following changes:    
+Because the [original version](https://github.com/inconshreveable/ngrok) is no longer maintained, So I forked that project and made the following changes:    
 1. split all codes into three different module: client,server,common       
 2. init these module by go mod        
 3. creat a user system and add server auth function based on user information         
