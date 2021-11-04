@@ -1,16 +1,16 @@
 
 ### This is a fork version from [ngrok](https://github.com/inconshreveable/ngrok)     
 Because this version is no longer maintained, So I forked that project and make the following changes:    
-1, split all codes into three different module: client,server,common;    
-2, init these module by go mod;     
-3, creat a user system and add server auth function based on user information;    
-4, add newly self sign certificate and creat a new Makefile to do build and deploy;
-5, add a Dockerfile to the server and let it can run in a docker image;
-6, modify client code, add a gin server, Let the user decide whether to build a version with its own client server.    
+1\ split all codes into three different module: client,server,common;       
+2\ init these module by go mod;        
+3\ creat a user system and add server auth function based on user information;         
+4\ add newly self sign certificate and creat a new Makefile to do build and deploy;         
+5\ add a Dockerfile to the server and let it can run in a docker image;         
+6\ modify client code, add a gin server, Let the user decide whether to build a version with its own client server.     
 
 [to be continue...]      
 
-### I build a test environment using this domain: [https://ngrok.space](https://ngrok.space)   
+### I build a test environment using this domain: [ngrok.space](https://ngrok.space)   
 
 ### ngrok - Introspected tunnels to localhost ([homepage](https://ngrok.space))
 ### ”I want to expose a local server behind a NAT or firewall to the internet.”
