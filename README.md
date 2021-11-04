@@ -1,12 +1,12 @@
 
 ### This is a fork version from [ngrok](https://github.com/inconshreveable/ngrok)     
 Because the [original version](https://github.com/inconshreveable/ngrok) is no longer maintained, So I forked that project and made the following changes:    
-1. split all codes into three different module: client,server,common       
-2. init these module by go mod        
-3. creat a user system and add server auth function based on user information         
-4. add newly self sign certificate and creat a new Makefile to do build and deploy         
-5. add a Dockerfile to the server and let it can run in a docker image         
-6. modify client code, add a gin server, Let the user decide whether to build a version with its own client server        
+1. split all codes into three different modules: client, server, common       
+2. init these modules by go mod and upgrade golang to latest version         
+3. create a user system and add a server auth function based on user information             
+4. add a newly self-sign certificate and create a new Makefile to do build and deploy               
+5. add a Dockerfile to the server and let it can run in a docker image             
+6. modify client code, add a gin server, Let the user decide whether to build a version with its own client-server            
 
 [to be continue...]      
 
