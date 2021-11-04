@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"raymond.com/common/util"
+	"raymond.com/ngrok-client/localserver"
 
 	"raymond.com/common/log"
 
@@ -26,6 +27,10 @@ func init() {
 }
 
 func main() {
+	if WithLocalServer == "1" {
+		go localserver.StartServer(fmt.Sprintf("https://%s.%s", DefaultSubDomain, DefaultDomain))
+	}
+
 	// parse options
 	opts, err := ParseArgs()
 	if err != nil {

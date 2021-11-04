@@ -128,7 +128,7 @@ func (v *TermView) draw() {
 	msec := float64(time.Millisecond)
 	v.Printf(0, i+2, "%-30s%.2fms", "Avg Conn Time", connTimer.Mean()/msec)
 
-	v.Printf(0, i+3, util.GetEvnWithDefaultVal("AdTxt", "The remote ngrok server uses Nginx as a proxy :)"))
+	v.Printf(0, i+3, util.GetEvnWithDefaultVal("AdTxt", "(ngrok.space provide technical support)"))
 
 	termbox.Flush()
 }

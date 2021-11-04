@@ -3,9 +3,10 @@ module raymond.com/ngrok-client
 go 1.16
 
 require (
+	github.com/gin-gonic/contrib v0.0.0-20201101042839-6a891bf89f19
+	github.com/gin-gonic/gin v1.7.4
 	github.com/gorilla/websocket v1.4.2
 	github.com/inconshreveable/mousetrap v1.0.0
-	github.com/jteeuwen/go-bindata v3.0.7+incompatible // indirect
 	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 // indirect
 	github.com/kr/binarydist v0.1.0 // indirect
 	github.com/nsf/termbox-go v1.1.1
