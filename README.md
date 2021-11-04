@@ -8,6 +8,12 @@ Because the [original version](https://github.com/inconshreveable/ngrok) is no l
 5. add a Dockerfile to the server and let it can run in a docker image             
 6. modify client code, add a gin server, Let the user decide whether to build a version with its own client-server            
 
+#### Why did I add a gin server to the client as the default server? 
+If someone wants a function out of the box, or he is not familiar with writing code,     
+He/She can build a client version with its own server(like this: GOBIN= GOOS=darwin GOARCH=amd64 go build -tags release -ldflags "-s -w -X 'main.WithLocalServer=1', just set build flags to: main.WithLocalServer=1).        
+He only needs to start the client, then creates a site file under the startup directory, and then put the website template file in it, and he immediately has his own website :)       
+
+
 [to be continue...]      
 
 ### I build a test environment using this domain: [ngrok.space](https://ngrok.space)  
