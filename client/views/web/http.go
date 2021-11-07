@@ -12,14 +12,14 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"raymond.com/ngrok-client/assets"
-	"raymond.com/ngrok-client/mvc"
+	"ngrok.space/ngrok-client/assets"
+	"ngrok.space/ngrok-client/mvc"
 
-	"raymond.com/common/util"
+	"ngrok.space/common/util"
 
-	"raymond.com/common/proto"
+	"ngrok.space/common/proto"
 
-	"raymond.com/common/log"
+	"ngrok.space/common/log"
 )
 
 type SerializedTxn struct {

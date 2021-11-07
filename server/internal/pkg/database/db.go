@@ -6,8 +6,8 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"raymond.com/common/util"
-	"raymond.com/ngrok-server/internal/pkg/models"
+	"ngrok.space/common/util"
+	"ngrok.space/ngrok-server/internal/pkg/models"
 )
 
 var Db *gorm.DB

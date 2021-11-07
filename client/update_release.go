@@ -5,11 +5,11 @@ package main
 import (
 	"time"
 
-	"raymond.com/common/version"
+	"ngrok.space/common/version"
 
-	"raymond.com/ngrok-client/mvc"
+	"ngrok.space/ngrok-client/mvc"
 
-	"raymond.com/common/log"
+	"ngrok.space/common/log"
 
 	"gopkg.in/inconshreveable/go-update.v0"
 	"gopkg.in/inconshreveable/go-update.v0/check"

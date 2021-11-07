@@ -1,7 +1,7 @@
 package mvc
 
 import (
-	"raymond.com/common/util"
+	"ngrok.space/common/util"
 )
 
 type Controller interface {

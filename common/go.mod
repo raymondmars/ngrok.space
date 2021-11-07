@@ -1,4 +1,4 @@
-module raymond.com/common
+module ngrok.space/common
 
 go 1.16
 

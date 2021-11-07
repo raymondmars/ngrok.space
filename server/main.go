@@ -7,15 +7,15 @@ import (
 	"runtime/debug"
 	"time"
 
-	"raymond.com/common/msg"
-	"raymond.com/ngrok-server/internal/app/core"
-	"raymond.com/ngrok-server/internal/pkg/database"
+	"ngrok.space/common/msg"
+	"ngrok.space/ngrok-server/internal/app/core"
+	"ngrok.space/ngrok-server/internal/pkg/database"
 
-	"raymond.com/common/conn"
+	"ngrok.space/common/conn"
 
-	"raymond.com/common/util"
+	"ngrok.space/common/util"
 
-	log "raymond.com/common/log"
+	log "ngrok.space/common/log"
 )
 
 func NewProxy(pxyConn conn.Conn, regPxy *msg.RegProxy) {

@@ -3,9 +3,9 @@ package core
 import (
 	"strings"
 
-	"raymond.com/common/msg"
-	"raymond.com/ngrok-server/internal/pkg/database"
-	"raymond.com/ngrok-server/internal/pkg/models"
+	"ngrok.space/common/msg"
+	"ngrok.space/ngrok-server/internal/pkg/database"
+	"ngrok.space/ngrok-server/internal/pkg/models"
 )
 
 type mysqlAuthDb struct {

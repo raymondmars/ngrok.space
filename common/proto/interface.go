@@ -1,7 +1,7 @@
 package proto
 
 import (
-	"raymond.com/common/conn"
+	"ngrok.space/common/conn"
 )
 
 type Protocol interface {

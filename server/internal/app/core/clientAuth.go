@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"raymond.com/common/msg"
+	"ngrok.space/common/msg"
 )
 
 var authTokens []string

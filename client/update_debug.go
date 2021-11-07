@@ -3,7 +3,7 @@
 package main
 
 import (
-	"raymond.com/ngrok-client/mvc"
+	"ngrok.space/ngrok-client/mvc"
 )
 
 // no auto-updating in debug mode

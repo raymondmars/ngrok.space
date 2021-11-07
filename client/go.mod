@@ -1,4 +1,4 @@
-module raymond.com/ngrok-client
+module ngrok.space/ngrok-client
 
 go 1.16
 
@@ -14,7 +14,7 @@ require (
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/inconshreveable/go-update.v0 v0.0.0-20150814200126-d8b0b1d421aa
 	gopkg.in/yaml.v1 v1.0.0-20140924161607-9f9df34309c0
-	raymond.com/common v0.0.0
+	ngrok.space/common v0.0.0
 )
 
-replace raymond.com/common => ../common
+replace ngrok.space/common => ../common

@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"raymond.com/common/conn"
+	"ngrok.space/common/conn"
 
-	"raymond.com/common/log"
+	"ngrok.space/common/log"
 )
 
 const (

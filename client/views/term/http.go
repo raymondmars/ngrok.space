@@ -4,10 +4,10 @@ import (
 	"unicode/utf8"
 
 	termbox "github.com/nsf/termbox-go"
-	"raymond.com/common/log"
-	"raymond.com/common/proto"
-	"raymond.com/common/util"
-	"raymond.com/ngrok-client/mvc"
+	"ngrok.space/common/log"
+	"ngrok.space/common/proto"
+	"ngrok.space/common/util"
+	"ngrok.space/ngrok-client/mvc"
 )
 
 const (

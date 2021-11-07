@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"raymond.com/common/cache"
+	"ngrok.space/common/cache"
 
-	"raymond.com/common/log"
+	"ngrok.space/common/log"
 )
 
 const (

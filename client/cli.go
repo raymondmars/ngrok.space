@@ -6,7 +6,7 @@ import (
 
 	"os"
 
-	"raymond.com/common/version"
+	"ngrok.space/common/version"
 )
 
 const usage1 string = `Usage: %s [OPTIONS] <local port or address>

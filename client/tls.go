@@ -7,7 +7,7 @@ import (
 	"encoding/pem"
 	"fmt"
 
-	"raymond.com/ngrok-client/assets"
+	"ngrok.space/ngrok-client/assets"
 )
 
 func LoadTLSConfig(rootCertPaths []string) (*tls.Config, error) {

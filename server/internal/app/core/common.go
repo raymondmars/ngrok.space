@@ -3,7 +3,7 @@ package core
 import (
 	"time"
 
-	"raymond.com/common/conn"
+	"ngrok.space/common/conn"
 )
 
 const (

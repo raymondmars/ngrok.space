@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"io/ioutil"
 
-	"raymond.com/ngrok-server/internal/app/assets"
+	"ngrok.space/ngrok-server/internal/app/assets"
 )
 
 func LoadTLSConfig(crtPath string, keyPath string) (tlsConfig *tls.Config, err error) {
