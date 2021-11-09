@@ -1,4 +1,4 @@
-.PHONY: default re-generate-cert clean-assets client-assets server-assets assets build-client build-server build-docker deploy all
+.PHONY: re-generate-cert clean-assets client-assets server-assets assets build-client build-server build-docker deploy remove-ds-store
 export SHELL := env PWD=$(CURDIR) bash
 ifeq ($(SHELL),)
 $(error bash is required)
@@ -16,7 +16,6 @@ BUILD_DEPLOY_PATH=$(PWD)/build/package/deploy
 
 DOCKER_IMAGE='registry.raymondjiang.net/raymond/ngrok-space:latest'
 
-default: all
 
 re-generate-cert:
 	bash scripts/recreate-cert.sh
