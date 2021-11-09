@@ -1,6 +1,6 @@
 certs
-assets/client/static/tls/ngrokroot.crt 
-assets/server/snakeoil.crt
-assets/server/snakeoil.key
-build/release/client/**
-build/release/server/**
+assets/client/tls/ngrokroot.crt 
+assets/server/tls/snakeoil.crt
+assets/server/tls/snakeoil.key
+build/package/release/client/**
+build/package/release/server/**
