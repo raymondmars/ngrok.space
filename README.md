@@ -5,7 +5,8 @@ Because the [original version](https://github.com/inconshreveable/ngrok) is no l
 2. init these modules by go mod and upgrade golang to the latest version         
 3. create a user system and add a server auth function based on user information             
 4. add a newly self-sign certificate and create a new Makefile to do build and deploy               
-5. add a Dockerfile to the server and let it can run in a docker image             
+5. add a Dockerfile to the server and let it can run in a docker image  
+6. create a new Makefile to make everything            
 6. modify client code, add a gin server, Let the user decide whether to build a version with its own client-server            
 
 #### Why did I add a gin server to the client as the default server? 
