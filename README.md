@@ -1,7 +1,7 @@
 
 ### This is a fork version from [ngrok](https://github.com/inconshreveable/ngrok)     
 Because the [original version](https://github.com/inconshreveable/ngrok) is no longer maintained, So I forked that project and made the following changes:    
-1. split all codes into three different modules: client, server, common       
+1. use (Golang project layout)[https://github.com/golang-standards/project-layout] to refactor project structure       
 2. init these modules by go mod and upgrade golang to the latest version         
 3. create a user system and add a server auth function based on user information             
 4. add a newly self-sign certificate and create a new Makefile to do build and deploy               
