@@ -1,4 +1,4 @@
-.PHONY: default server client deps fmt clean all release-all assets client-assets server-assets contributors
+.PHONY: default re-generate-cert clean-assets client-assets server-assets assets build-client build-server build-docker deploy all
 export SHELL := env PWD=$(CURDIR) bash
 ifeq ($(SHELL),)
 $(error bash is required)
