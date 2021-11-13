@@ -17,9 +17,9 @@ BUILD_DEPLOY_PATH=$(PWD)/build/package/deploy
 DOCKER_IMAGE='registry.raymondjiang.net/raymond/ngrok-space:latest'
 
 
+
 re-generate-cert:
 	bash scripts/recreate-cert.sh
-
 
 clean-assets:
 	rm -rf internal/app/client/assets/ internal/app/server/assets/
@@ -52,6 +52,9 @@ build-client-macos: build-client
 
 build-client-windows: OS=windows
 build-client-windows: build-client
+
+build-client-arm: OS=linux-arm
+build-client-arm: build-client
 
 build-server:
 	bash build/package/server/build.sh $(OS) $(SERVER_MAIN_LOCATION) $(SERVER_BUILD_OUTPUT)
