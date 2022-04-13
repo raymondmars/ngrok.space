@@ -14,7 +14,7 @@ SERVER_BUILD_OUTPUT=$(PWD)/build/package/release/server
 
 BUILD_DEPLOY_PATH=$(PWD)/build/package/deploy
 
-DOCKER_IMAGE='registry.raymondjiang.net/raymond/ngrok-space:latest'
+DOCKER_IMAGE='0raymond0/ngrok-space:latest'
 
 
 
@@ -26,14 +26,14 @@ clean-assets:
 
 client-assets: BUILDTAGS=release
 client-assets: 
-	script/go-bindata -nomemcopy -pkg=assets -tags=$(BUILDTAGS) \
+	scripts/go-bindata -nomemcopy -pkg=assets -tags=$(BUILDTAGS) \
 		-debug=$(if $(findstring debug,$(BUILDTAGS)),true,false) \
 		-o=./internal/app/client/assets/assets_$(BUILDTAGS).go \
 		assets/client/...
 
 server-assets: BUILDTAGS=release
 server-assets: 
-	script/go-bindata -nomemcopy -pkg=assets -tags=$(BUILDTAGS) \
+	scripts/go-bindata -nomemcopy -pkg=assets -tags=$(BUILDTAGS) \
 		-debug=$(if $(findstring debug,$(BUILDTAGS)),true,false) \
 		-o=./internal/app/server/assets/assets_$(BUILDTAGS).go \
 		assets/server/...

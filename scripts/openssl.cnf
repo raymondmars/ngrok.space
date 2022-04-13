@@ -122,7 +122,7 @@ req_extensions = v3_req # The extensions to add to a certificate request
 
 [ alt_names ]
 DNS.1 = localhost
-DNS.2 = ngrok.space
+DNS.2 = ngrok.quest
 
 [ req_distinguished_name ]
 countryName			= Country Name (2 letter code)

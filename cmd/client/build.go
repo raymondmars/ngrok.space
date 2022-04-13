@@ -1,7 +1,7 @@
 package main
 
 var (
-	DefaultDomain    = "ngrok.space"
+	DefaultDomain    = "ngrok.quest"
 	WithLocalServer  = "0"
 	LocalServerPort  = "4001"
 	DefaultSubDomain = ""
