@@ -17,8 +17,6 @@ He only needs to start the client, then creates a site file under the startup di
 
 [to be continue...]      
 
-### I build a test environment using this domain: [ngrok.space](https://ngrok.space)  
-
 ### ngrok - Introspected tunnels to localhost    
 ### ”I want to expose a local server behind a NAT or firewall to the internet.”
 ![](https://ngrok.com/static/img/overview.png)

@@ -22,7 +22,7 @@ import (
 )
 
 const (
-	defaultServerAddr   = "ngrok.space:5552"
+	defaultServerAddr   = "ngrok.quest:5552"
 	defaultInspectAddr  = "127.0.0.1:4040"
 	pingInterval        = 20 * time.Second
 	maxPongLatency      = 15 * time.Second

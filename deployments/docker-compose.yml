@@ -10,7 +10,7 @@ x-logging:
 services:
   ngrok:
     build: .
-    image: registry.raymondjiang.net/raymond/ngrok-space:latest
+    image: 0raymond0/ngrok-space:latest
     logging: *default-logging
     ports:
       - "${PORT:-8888}:8888"

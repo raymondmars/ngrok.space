@@ -1,5 +1,5 @@
 #!/bin/bash
-# export NGROK_DOMAIN=ngrok.space
+# export NGROK_DOMAIN=ngrok.quest
 #
 #参考：https://www.cnblogs.com/yjmyzz/p/openssl-tutorial.html
 #https://www.cnblogs.com/jackluo/p/13841286.html
@@ -17,22 +17,22 @@ mkdir -p ./certs
 
 #1，生成CA证书
 openssl genrsa -out ./certs/ca.key 2048 
-openssl req -x509 -new -nodes -key ./certs/ca.key -subj "/CN=ngrok.space" -days 5000 -out ./certs/ca.crt 
+openssl req -x509 -new -nodes -key ./certs/ca.key -subj "/CN=ngrok.quest" -days 5000 -out ./certs/ca.crt 
 
 #2，生成证书签名请求文件（公钥）,并且指定最终是生成SAN类型的证书
 openssl genrsa -out ./certs/server.key 2048 
 openssl req -new -sha256 \
     -key ./certs/server.key \
-    -subj "/CN=ngrok.space" \
+    -subj "/CN=ngrok.quest" \
     -reqexts SAN \
     -config <(cat ./scripts/openssl.cnf \
-        <(printf "[SAN]\nsubjectAltName=DNS:localhost,DNS:ngrok.space")) \
+        <(printf "[SAN]\nsubjectAltName=DNS:localhost,DNS:ngrok.quest")) \
     -out ./certs/server.csr 
 
 #3，生成 x.509 格式证书
 openssl x509 -req -days 365000 \
     -in ./certs/server.csr -CA ./certs/ca.crt -CAkey ./certs/ca.key -CAcreateserial \
-    -extfile <(printf "subjectAltName=DNS:localhost,DNS:ngrok.space") \
+    -extfile <(printf "subjectAltName=DNS:localhost,DNS:ngrok.quest") \
     -out ./certs/server.crt
 
 cp ./certs/ca.crt ./assets/client/tls/ngrokroot.crt 
